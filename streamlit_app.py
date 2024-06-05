@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 
 # 创建一个空的有向图
 G = nx.DiGraph()
-
 # 添加节点和边
 G.add_edges_from([
     ("设备1", "设备2"),
@@ -22,24 +21,15 @@ G.add_edges_from([
     ("供电系统", "生产区"),
     ("安全设施", "办公区"),
 ])
-
-# 设置节点属性
 for node in G.nodes():
     G.nodes[node]["label"] = node
-
-# 设置边属性
 for edge in G.edges():
     G.edges[edge]["label"] = "连接" if edge[0] != "设备1" else "依赖"
-
-# 绘制图形
 pos = nx.spring_layout(G)
 nx.draw(G, pos, with_labels=True, font_weight='bold')
 nx.draw_networkx_edge_labels(G, pos, edge_labels=nx.get_edge_attributes(G, 'label'))
 plt.show()
-
-# 显示图形
 st.pyplot()
 st.bar_chart(df_plot, x = 'Category', y = 'count')
-
 st.write("Here we are at the end of getting started with streamlit! Happy Streamlit-ing! :balloon:")
 
